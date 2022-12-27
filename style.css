@@ -1,0 +1,77 @@
+*{
+    padding: 0;margin: 0;
+}
+
+
+body{
+    background: linear-gradient(white,green);
+    height: 98vh;
+}
+
+.head{
+    text-align: center;
+    margin: 2vh 0;
+}
+
+.container{
+    width: 70%;
+    height: 70vh;
+    border: 2px solid black;
+    margin: 0vh auto;
+    padding: 3vh 1vw;
+    overflow-y: auto;
+    border-radius: 7px;
+}
+.msgBox{
+    width: 70%;
+    padding: 2vh 0;
+    margin:0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.msgBox input{
+    width: 74%;
+    padding: .6vh 1vw;
+    font-size: 1.2em;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.msgBox button{
+    /* width: 10%; */
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 1vh 2vw;
+    margin: 0 .6vw;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    background-color: rgb(27, 182, 27);
+    color: aliceblue;
+}
+
+.msg{
+    float: right;
+    clear:both;
+    margin: 1vh 0;
+    padding: 1vh 1vw;
+    border: 2px solid black;
+    border-radius: 7px;
+    font-size: 1.2em;
+}
+
+.sent{
+    float: right;
+    clear: both;
+}
+
+.received{
+    float: left;
+    clear: both;
+}
+
+.person{
+    color: rgb(27, 182, 27);
+    display: inline;
+}
