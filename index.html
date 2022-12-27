@@ -5,28 +5,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="http://localhost:8000/socket.io/socket.io.js"></script>
-    <script src="./client.js" defer></script>
     <link rel="stylesheet" href="./style.css">
     <title>myChat app - let's connect</title>
 </head>
 
 <body>
     <h1 class="head">Welcome to myChat app</h1>
-    <div class="container">
-        <div class="msg sent">
-            <p class="person"> Harry </p>: sfbsdfbusdafbsajd
-        </div>
-        <div class="msg received">
-            <p class="person"> Shubham </p>: sfbsdfkusbdfkasd
-        </div>
-    </div>
+    <div class="container"></div>
     <div class="msgBox">
         <form action="#">
             <input type="text">
             <button type="submit">Send</button>
         </form>
     </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket=io();
+        const name=prompt("Enter name to join chat....");
+        socket.emit("new-user-joined",name);
+
+        const container=document.querySelector(".container");
+        const form=document.querySelector(".msgBox form");
+        const msgBox=document.querySelector(".msgBox input");
+        const submit=document.querySelector(".msgBox button");
+        function append(name,msg,position){
+            container.innerHTML+=`<div class="msg ${position}"><p class="person"> ${name} </p>: ${msg}</div>`;
+            msgBox.value=''
+        }
+        socket.on("user-joined",name=>{
+            console.log("Entered");
+            container.innerHTML+=`<div class="msg sent"><p class="person"> ${name} </p>joined the chat.</div>`;
+        });
+        form.addEventListener('submit',(e)=>{
+            e.preventDefault();
+            const data={
+                "username":name,
+                "msg":msgBox.value
+            }
+            append("You",data["msg"],"sent");
+            socket.emit("send",data);
+        });
+        socket.on("message",(data)=>{
+            append(data["username"],data["msg"],"received");
+        })
+    </script>
 </body>
 
 </html>

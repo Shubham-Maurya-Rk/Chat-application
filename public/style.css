@@ -32,7 +32,7 @@ body{
 }
 
 .msgBox input{
-    width: 74%;
+    width: 62%;
     padding: .6vh 1vw;
     font-size: 1.2em;
     border: 2px solid black;
