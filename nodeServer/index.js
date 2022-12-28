@@ -22,6 +22,10 @@ io.on("connection",(socket)=>{
     socket.on('send',(data)=>{
         socket.broadcast.emit("message",{"username":users[socket.id],"msg":data["msg"]});
     })
+    socket.on('disconnect',()=>{
+        socket.broadcast.emit("left",users[socket.id]);
+        delete users[socket.id];
+    })
 })
 
 //socket.io setup ends

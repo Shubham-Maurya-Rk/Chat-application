@@ -33,7 +33,6 @@
             msgBox.value=''
         }
         socket.on("user-joined",name=>{
-            console.log("Entered");
             container.innerHTML+=`<div class="msg sent"><p class="person"> ${name} </p>joined the chat.</div>`;
         });
         form.addEventListener('submit',(e)=>{
@@ -47,8 +46,11 @@
         });
         socket.on("message",(data)=>{
             append(data["username"],data["msg"],"received");
-        })
-    </script>
+        });
+        socket.on("left",(data)=>{
+            container.innerHTML+=`<div class="msg received"><p class="person"> ${data} </p>left the chat.</div>`;
+        });
+        </script>
 </body>
 
 </html>
